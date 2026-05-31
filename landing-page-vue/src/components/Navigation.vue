@@ -3,11 +3,23 @@ import { ref } from 'vue';
 
 const isMenuOpen = ref(false);
 
+defineProps({
+  currentPage: String
+});
+
+const emit = defineEmits(['navigate']);
+
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
 
-const handleLinkClick = () => {
+const handleDesignSystemClick = (e) => {
+  e.preventDefault();
+  emit('navigate', 'design-system');
+  isMenuOpen.value = false;
+};
+
+const handleMenuClick = () => {
   isMenuOpen.value = false;
 };
 </script>
@@ -22,17 +34,20 @@ const handleLinkClick = () => {
       </div>
 
       <div :class="`navbar-menu ${isMenuOpen ? 'active' : ''}`">
-        <a href="#home" @click="handleLinkClick" class="nav-link">
+        <a href="#home" @click="handleMenuClick" class="nav-link">
           Inicio
         </a>
-        <a href="#destinos" @click="handleLinkClick" class="nav-link">
+        <a href="#destinos" @click="handleMenuClick" class="nav-link">
           Destinos
         </a>
-        <a href="#servicios" @click="handleLinkClick" class="nav-link">
+        <a href="#servicios" @click="handleMenuClick" class="nav-link">
           Servicios
         </a>
-        <a href="#contacto" @click="handleLinkClick" class="nav-link">
+        <a href="#contacto" @click="handleMenuClick" class="nav-link">
           Contacto
+        </a>
+        <a href="#design-system" @click="handleDesignSystemClick" :class="`nav-link ${currentPage === 'design-system' ? 'active' : ''}`">
+          Design System
         </a>
       </div>
 
@@ -89,7 +104,14 @@ const handleLinkClick = () => {
 }
 
 .nav-link:hover {
-  color: #007bff;
+  color: #1abc9c;
+}
+
+.nav-link.active {
+  color: #1abc9c;
+  font-weight: 600;
+  border-bottom: 2px solid #1abc9c;
+  padding-bottom: 4px;
 }
 
 .hamburger {

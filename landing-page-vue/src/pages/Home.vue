@@ -75,7 +75,7 @@ const scrollToForm = () => {
       <div class="hero-content">
         <h1>Descubre el Mundo con TravelGo</h1>
         <p>Tus aventuras soñadas comenzarán aquí. Explora destinos increíbles a precios inigualables.</p>
-        <Button variant="secondary" size="large" @click="scrollToForm">
+        <Button variant="primary" size="large" @click="scrollToForm">
           Contáctenos
         </Button>
       </div>

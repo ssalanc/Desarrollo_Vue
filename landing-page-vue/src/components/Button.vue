@@ -64,16 +64,6 @@ defineEmits(['click']);
   box-shadow: 0 4px 12px rgba(26, 188, 156, 0.3);
 }
 
-.btn-secondary {
-  background: white;
-  color: #1abc9c;
-  border: 2px solid #1abc9c;
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background: #1abc9c;
-  color: white;
-}
 
 /* Sizes */
 .btn-small {

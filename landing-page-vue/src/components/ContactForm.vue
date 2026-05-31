@@ -75,6 +75,7 @@ const handleSubmit = (e) => {
   console.log('Datos del formulario:', form.value);
   modalOpen.value = true;
   form.value = { name: '', email: '', phone: '', destination: '', message: '' };
+  touched.value = { name: false, email: false, phone: false, destination: false, message: false };
 };
 </script>
 

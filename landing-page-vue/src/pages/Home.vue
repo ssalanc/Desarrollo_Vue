@@ -148,7 +148,8 @@ const scrollToForm = () => {
   margin-bottom: 20px;
   animation: fadeInDown 0.8s ease;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  white-space: nowrap;
+  white-space: normal;
+  word-spacing: 100vw;
 }
 
 .hero-content p {
@@ -259,11 +260,22 @@ const scrollToForm = () => {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
+  .hero {
+    padding: 60px 20px;
+    min-height: auto;
   }
 
-  .hero p {
+  .hero-content {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+    word-spacing: normal;
+  }
+
+  .hero-content p {
     font-size: 1rem;
   }
 

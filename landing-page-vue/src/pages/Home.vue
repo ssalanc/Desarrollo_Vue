@@ -139,8 +139,10 @@ const scrollToForm = () => {
 }
 
 .hero-content {
-  max-width: 1000px;
+  max-width: none;
+  width: 100%;
   text-align: center;
+  padding: 0 20px;
 }
 
 .hero-content h1 {
@@ -148,8 +150,9 @@ const scrollToForm = () => {
   margin-bottom: 20px;
   animation: fadeInDown 0.8s ease;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  white-space: normal;
-  word-spacing: 100vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
 }
 
 .hero-content p {
@@ -272,7 +275,8 @@ const scrollToForm = () => {
 
   .hero-content h1 {
     font-size: 1.8rem;
-    word-spacing: normal;
+    white-space: normal;
+    overflow: visible;
   }
 
   .hero-content p {

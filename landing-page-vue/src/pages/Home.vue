@@ -1,8 +1,8 @@
 <script setup>
 import Card from '../components/Card.vue';
-import Icon from '../components/Icon.vue';
 import ContactForm from '../components/ContactForm.vue';
-import Button from '../components/Button.vue';
+import Hero from '../components/Hero.vue';
+import ServiceItem from '../components/ServiceItem.vue';
 
 const destinations = [
   {
@@ -56,10 +56,10 @@ const destinations = [
 ];
 
 const services = [
-  { title: 'Vuelos Internacionales', description: 'Acceso a vuelos de las mejores aerolíneas del mundo', icon: 'flights' },
-  { title: 'Hospedaje Premium', description: 'Alojamiento en hoteles de lujo seleccionados', icon: 'hotel' },
-  { title: 'Alquiler de Autos', description: 'Vehículos de calidad para explorar a tu ritmo', icon: 'car' },
-  { title: 'Tours Guiados', description: 'Experiencias culturales con guías profesionales', icon: 'compass' }
+  { id: 1, title: 'Vuelos Internacionales', description: 'Acceso a vuelos de las mejores aerolíneas del mundo', icon: 'flights' },
+  { id: 2, title: 'Hospedaje Premium', description: 'Alojamiento en hoteles de lujo seleccionados', icon: 'hotel' },
+  { id: 3, title: 'Alquiler de Autos', description: 'Vehículos de calidad para explorar a tu ritmo', icon: 'car' },
+  { id: 4, title: 'Tours Guiados', description: 'Experiencias culturales con guías profesionales', icon: 'compass' }
 ];
 
 const scrollToForm = () => {
@@ -71,26 +71,20 @@ const scrollToForm = () => {
 <template>
   <div class="home">
     <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="hero-content">
-        <h1>Descubre el Mundo con TravelGo</h1>
-        <p>Tus aventuras soñadas comenzarán aquí. Explora destinos increíbles a precios inigualables.</p>
-        <Button variant="primary" size="large" @click="scrollToForm">
-          Contáctenos
-        </Button>
-      </div>
-    </section>
+    <Hero :onContactClick="scrollToForm" />
 
     <!-- Servicios -->
     <section id="servicios" class="services section-padding">
       <div class="container">
         <h2>Nuestros Servicios</h2>
         <div class="services-grid">
-          <div v-for="(service, idx) in services" :key="idx" class="service-item">
-            <Icon :type="service.icon" size="large" />
-            <h3>{{ service.title }}</h3>
-            <p>{{ service.description }}</p>
-          </div>
+          <ServiceItem
+            v-for="service in services"
+            :key="service.id"
+            :icon="service.icon"
+            :title="service.title"
+            :description="service.description"
+          />
         </div>
       </div>
     </section>
@@ -125,67 +119,6 @@ const scrollToForm = () => {
   width: 100%;
 }
 
-/* Hero Section */
-.hero {
-  background: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=600&fit=crop') center/cover no-repeat;
-  background-attachment: fixed;
-  color: white;
-  padding: 120px 20px;
-  text-align: center;
-  min-height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-content {
-  max-width: none;
-  width: 100%;
-  text-align: center;
-  padding: 0 20px;
-}
-
-.hero-content h1 {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-  animation: fadeInDown 0.8s ease;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
-}
-
-.hero-content p {
-  font-size: 1.25rem;
-  margin-bottom: 30px;
-  animation: fadeInUp 0.8s ease;
-  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
-  color: #000;
-  font-weight: 500;
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Services Section */
 .services {
   background-color: white;
@@ -202,34 +135,6 @@ const scrollToForm = () => {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
-}
-
-.service-item {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 30px;
-  border-radius: 8px;
-  text-align: center;
-  transition: all 0.3s ease;
-  border-left: 4px solid #1abc9c;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.service-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.service-item h3 {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-  color: #1a1a1a;
-}
-
-.service-item p {
-  color: #666;
-  line-height: 1.6;
 }
 
 /* Destinations Section */
@@ -263,26 +168,6 @@ const scrollToForm = () => {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .hero {
-    padding: 60px 20px;
-    min-height: auto;
-  }
-
-  .hero-content {
-    max-width: 100%;
-    padding: 0 20px;
-  }
-
-  .hero-content h1 {
-    font-size: 1.8rem;
-    white-space: normal;
-    overflow: visible;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
   .services h2,
   .destinations h2 {
     font-size: 2rem;
